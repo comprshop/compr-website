@@ -1,8 +1,7 @@
-/* Official store links. Update contact when a public address is available. */
+/* Official store links. */
 const COMPR_LINKS = {
   chrome: "https://chromewebstore.google.com/detail/compr/opgdgckljdepjokbbdgahhbocdlkggkj",
-  edge: "https://microsoftedge.microsoft.com/addons/detail/hiioneifjfpbgbnmmhjbhcnbbkpddnle",
-  contact: "" // Example: mailto:hello@example.com
+  edge: "https://microsoftedge.microsoft.com/addons/detail/hiioneifjfpbgbnmmhjbhcnbbkpddnle"
 };
 
 document.querySelectorAll("[data-store]").forEach(link => {
@@ -20,67 +19,17 @@ document.querySelectorAll("[data-store]").forEach(link => {
   });
 });
 
-document.querySelectorAll("[data-contact-link]").forEach(link => {
-  if (COMPR_LINKS.contact) link.href = COMPR_LINKS.contact;
-  else link.addEventListener("click", event => event.preventDefault());
-});
-
 document.querySelectorAll("[data-year]").forEach(node => {
   node.textContent = new Date().getFullYear();
 });
 
-const viewPanels = [...document.querySelectorAll("[data-view]")];
-const viewLinks = [...document.querySelectorAll("[data-view-link]")];
-const validViews = new Set(viewPanels.map(panel => panel.dataset.view));
-
-function showView(requestedView, updateHistory = true) {
-  const view = validViews.has(requestedView) ? requestedView : "overview";
-  viewPanels.forEach(panel => {
-    const active = panel.dataset.view === view;
-    panel.hidden = !active;
-    panel.classList.toggle("is-active", active);
+document.querySelectorAll(".faq-list button").forEach(button => {
+  button.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    const answer = button.closest("article")?.querySelector(".faq-answer");
+    button.setAttribute("aria-expanded", String(!expanded));
+    if (answer) answer.hidden = expanded;
   });
-  viewLinks.forEach(link => {
-    const active = link.dataset.viewLink === view;
-    link.classList.toggle("is-active", active);
-    if (active) link.setAttribute("aria-current", "page");
-    else link.removeAttribute("aria-current");
-  });
-  if (updateHistory) history.replaceState(null, "", `#${view}`);
-  window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
-}
-
-viewLinks.forEach(link => link.addEventListener("click", event => {
-  event.preventDefault();
-  showView(link.dataset.viewLink);
-}));
-
-document.body.classList.add("tabs-enabled");
-
-const browserPicker = document.querySelector("[data-browser-picker]");
-const browserTrigger = document.querySelector("[data-browser-trigger]");
-const browserCloseButtons = document.querySelectorAll("[data-browser-close]");
-let pickerReturnTarget = null;
-
-function openBrowserPicker() {
-  if (!browserPicker) return;
-  pickerReturnTarget = document.activeElement;
-  browserPicker.hidden = false;
-  document.body.classList.add("modal-open");
-  browserPicker.querySelector(".browser-option")?.focus();
-}
-
-function closeBrowserPicker() {
-  if (!browserPicker || browserPicker.hidden) return;
-  browserPicker.hidden = true;
-  document.body.classList.remove("modal-open");
-  pickerReturnTarget?.focus();
-}
-
-browserTrigger?.addEventListener("click", openBrowserPicker);
-browserCloseButtons.forEach(button => button.addEventListener("click", closeBrowserPicker));
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape") closeBrowserPicker();
 });
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -98,5 +47,3 @@ if (reducedMotion || !("IntersectionObserver" in window)) {
   }, { threshold: 0.12 });
   revealItems.forEach(item => observer.observe(item));
 }
-
-showView(location.hash.slice(1), false);
