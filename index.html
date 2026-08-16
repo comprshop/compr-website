@@ -15,8 +15,8 @@
   <meta name="twitter:title" content="COMPR — Compare before you buy">
   <meta name="twitter:description" content="A free, privacy-friendly browser extension for smarter product comparisons.">
   <link rel="icon" href="compr-logo.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
-  <script src="main.js?v=20260816-2" defer></script>
+  <link rel="stylesheet" href="style.css?v=20260816-3">
+  <script src="main.js?v=20260816-3" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -32,7 +32,7 @@
         <a href="#compare">Compare</a>
         <a href="#privacy">Privacy</a>
       </nav>
-      <a class="button button-small store-link" data-store="chrome" href="https://chromewebstore.google.com/detail/compr/opgdgckljdepjokbbdgahhbocdlkggkj" target="_blank" rel="noopener noreferrer">Get COMPR</a>
+      <button class="button button-small browser-trigger" type="button" data-browser-trigger aria-haspopup="dialog">Get COMPR <span aria-hidden="true">↓</span></button>
     </div>
   </header>
 
@@ -40,7 +40,7 @@
     <section class="hero section">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> Compare before you buy</p>
+          <p class="eyebrow"><span></span> Your shopping shortlist, simplified</p>
           <h1>Stop shopping with <em>20 tabs open.</em></h1>
           <p class="hero-lead">COMPR saves clothing from different webshops and puts the details side by side, so your shortlist stays clear and your choice feels easier.</p>
           <div class="button-row">
@@ -124,7 +124,7 @@
           </ul>
         </div>
 
-        <div class="comparison-demo reveal" aria-label="Illustrative preview of the COMPR comparison screen">
+        <div class="comparison-demo reveal" aria-label="Illustrative preview of the COMPR comparison screen" data-screenshot-slot>
           <div class="demo-top"><div><small>YOUR COMPARISON</small><strong>Compare your picks</strong></div><span>3 items</span></div>
           <div class="demo-controls"><span>Search saved products</span><span>All categories⌄</span><span>Price: low to high⌄</span></div>
           <div class="demo-products">
@@ -175,5 +175,21 @@
     </div>
     <div class="container footer-bottom"><span>© <span data-year></span> COMPR</span><span>No tracking. No analytics.</span></div>
   </footer>
+
+  <div class="browser-picker" data-browser-picker hidden>
+    <button class="picker-backdrop" type="button" data-browser-close aria-label="Close browser selection"></button>
+    <section class="picker-panel" role="dialog" aria-modal="true" aria-labelledby="browser-picker-title">
+      <button class="picker-close" type="button" data-browser-close aria-label="Close">×</button>
+      <div class="picker-logo"><img src="compr-logo.png" width="52" height="52" alt=""></div>
+      <p class="eyebrow">Install COMPR</p>
+      <h2 id="browser-picker-title">Choose your browser.</h2>
+      <p>COMPR is free to install. Pick the browser you use to continue to its official store.</p>
+      <div class="browser-options">
+        <a class="browser-option store-link" data-store="chrome" href="https://chromewebstore.google.com/detail/compr/opgdgckljdepjokbbdgahhbocdlkggkj" target="_blank" rel="noopener noreferrer"><span class="browser-mark chrome-mark" aria-hidden="true"></span><span><strong>Google Chrome</strong><small>Open Chrome Web Store</small></span><b aria-hidden="true">↗</b></a>
+        <a class="browser-option store-link" data-store="edge" href="https://microsoftedge.microsoft.com/addons/detail/hiioneifjfpbgbnmmhjbhcnbbkpddnle" target="_blank" rel="noopener noreferrer"><span class="browser-mark edge-mark" aria-hidden="true"></span><span><strong>Microsoft Edge</strong><small>Open Microsoft Edge Add-ons</small></span><b aria-hidden="true">↗</b></a>
+      </div>
+      <small class="picker-note">No account required · Free to use</small>
+    </section>
+  </div>
 </body>
 </html>
