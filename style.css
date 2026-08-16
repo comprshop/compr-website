@@ -142,8 +142,8 @@ h1 em { color: var(--accent); font-style: normal; }
 .comparison-demo.has-real-screenshot { padding: 0; background: #f1f2f6; }
 .comparison-demo.has-real-screenshot > :not(.real-screenshot) { display: none; }
 .real-screenshot { width: 100%; height: auto; }
-.comparison-demo.has-real-screenshot { display: grid; place-items: center; min-height: min(64vh, 43rem); padding: 1.25rem; background: linear-gradient(145deg,#e8e9ef,#f7f7fa); }
-.comparison-demo.has-real-screenshot .real-screenshot { width: auto; max-width: 100%; height: min(61vh, 40rem); object-fit: contain; border-radius: .8rem; box-shadow: 0 18px 45px rgba(20,20,30,.16); }
+.comparison-demo.has-real-screenshot { display: grid; width: 100%; min-height: 0; aspect-ratio: 4 / 3; padding: .65rem; background: linear-gradient(145deg,#e8e9ef,#f7f7fa); }
+.comparison-demo.has-real-screenshot .real-screenshot { width: 100%; max-width: none; height: 100%; object-fit: cover; border-radius: .9rem; box-shadow: 0 18px 45px rgba(20,20,30,.16); }
 .demo-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem; }
 .demo-top div { display: grid; }
 .demo-top small { color: var(--accent-dark); font-size: .54rem; font-weight: 900; letter-spacing: .08em; }
@@ -264,8 +264,7 @@ body.modal-open { overflow: hidden; }
   .nav-wrap nav::-webkit-scrollbar { display: none; }
   .tabs-enabled main { min-height: calc(100vh - 7rem); }
   .tabs-enabled .view-panel { min-height: calc(100vh - 7rem); }
-  .comparison-demo.has-real-screenshot { min-height: 48vh; padding: .65rem; }
-  .comparison-demo.has-real-screenshot .real-screenshot { height: 46vh; }
+  .comparison-demo.has-real-screenshot { min-height: 0; padding: .4rem; }
 }
 
 @media (min-width: 760px) {
