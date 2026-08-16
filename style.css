@@ -127,6 +127,9 @@ h1 em { color: var(--accent); font-style: normal; }
 .feature-list span { width: 1.45rem; height: 1.45rem; display: inline-grid; place-items: center; margin-right: .5rem; border-radius: 50%; background: #e8f8f1; color: var(--green); font-size: .72rem; font-weight: 900; }
 .comparison-demo { position: relative; overflow: hidden; padding: .85rem; border: 1px solid #dadbe1; border-radius: 1.5rem; background: #fdfdfe; box-shadow: 0 30px 75px rgba(21,21,29,.12); }
 .comparison-demo::before { position: absolute; z-index: 2; inset: 0; border: 1px solid rgba(255,255,255,.7); border-radius: inherit; pointer-events: none; content: ""; }
+.comparison-demo.has-real-screenshot { padding: 0; background: #f1f2f6; }
+.comparison-demo.has-real-screenshot > :not(.real-screenshot) { display: none; }
+.real-screenshot { width: 100%; height: auto; }
 .demo-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1rem; }
 .demo-top div { display: grid; }
 .demo-top small { color: var(--accent-dark); font-size: .54rem; font-weight: 900; letter-spacing: .08em; }
