@@ -29,6 +29,34 @@ document.querySelectorAll("[data-year]").forEach(node => {
   node.textContent = new Date().getFullYear();
 });
 
+const viewPanels = [...document.querySelectorAll("[data-view]")];
+const viewLinks = [...document.querySelectorAll("[data-view-link]")];
+const validViews = new Set(viewPanels.map(panel => panel.dataset.view));
+
+function showView(requestedView, updateHistory = true) {
+  const view = validViews.has(requestedView) ? requestedView : "overview";
+  viewPanels.forEach(panel => {
+    const active = panel.dataset.view === view;
+    panel.hidden = !active;
+    panel.classList.toggle("is-active", active);
+  });
+  viewLinks.forEach(link => {
+    const active = link.dataset.viewLink === view;
+    link.classList.toggle("is-active", active);
+    if (active) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
+  if (updateHistory) history.replaceState(null, "", `#${view}`);
+  window.scrollTo({ top: 0, behavior: reducedMotion ? "auto" : "smooth" });
+}
+
+viewLinks.forEach(link => link.addEventListener("click", event => {
+  event.preventDefault();
+  showView(link.dataset.viewLink);
+}));
+
+document.body.classList.add("tabs-enabled");
+
 const browserPicker = document.querySelector("[data-browser-picker]");
 const browserTrigger = document.querySelector("[data-browser-trigger]");
 const browserCloseButtons = document.querySelectorAll("[data-browser-close]");
@@ -70,3 +98,5 @@ if (reducedMotion || !("IntersectionObserver" in window)) {
   }, { threshold: 0.12 });
   revealItems.forEach(item => observer.observe(item));
 }
+
+showView(location.hash.slice(1), false);

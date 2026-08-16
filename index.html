@@ -15,8 +15,8 @@
   <meta name="twitter:title" content="COMPR — Compare before you buy">
   <meta name="twitter:description" content="A free, privacy-friendly browser extension for smarter product comparisons.">
   <link rel="icon" href="compr-logo.png" type="image/png">
-  <link rel="stylesheet" href="style.css?v=20260816-4">
-  <script src="main.js?v=20260816-3" defer></script>
+  <link rel="stylesheet" href="style.css?v=20260816-5">
+  <script src="main.js?v=20260816-5" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -28,16 +28,18 @@
         <span>COMPR</span>
       </a>
       <nav aria-label="Primary navigation">
-        <a href="#how-it-works">How it works</a>
-        <a href="#compare">Compare</a>
-        <a href="#privacy">Privacy</a>
+        <a href="#overview" data-view-link="overview">Overview</a>
+        <a href="#demo" data-view-link="demo">Demo</a>
+        <a href="#how-it-works" data-view-link="how-it-works">How it works</a>
+        <a href="#compare" data-view-link="compare">Compare</a>
+        <a href="#privacy" data-view-link="privacy">Privacy</a>
       </nav>
       <button class="button button-small browser-trigger" type="button" data-browser-trigger aria-haspopup="dialog">Get COMPR <span aria-hidden="true">↓</span></button>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero section">
+    <section class="hero section view-panel" id="overview" data-view="overview">
       <div class="container hero-grid">
         <div class="hero-copy reveal">
           <p class="eyebrow"><span></span> Your shopping shortlist, simplified</p>
@@ -81,23 +83,21 @@
       </div>
     </section>
 
-    <section class="section video-section" id="demo">
+    <section class="section video-section view-panel" id="demo" data-view="demo">
       <div class="container">
         <div class="section-heading reveal">
           <p class="eyebrow">See it in action</p>
           <h2>From product page to shortlist in seconds.</h2>
           <p>A quick walkthrough will show how COMPR turns scattered tabs into one useful comparison.</p>
         </div>
-        <div class="video-placeholder reveal" data-video-placeholder>
-          <div class="play-button" aria-hidden="true">▶</div>
-          <strong>COMPR product demo</strong>
-          <span>Demo video coming soon</span>
-          <small>Recommended format: MP4, 16:9 or vertical 9:16</small>
+        <div class="product-demo-grid">
+          <figure class="popup-showcase reveal"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><img src="compr-popup.png" width="498" height="746" loading="lazy" alt="COMPR popup showing a detected Nike product, its price and available sizes"><figcaption>The COMPR popup recognises the product you are viewing and keeps the important details close.</figcaption></figure>
+          <div class="video-placeholder reveal" data-video-placeholder><div class="play-button" aria-hidden="true">▶</div><strong>COMPR product demo</strong><span>Video coming later</span><small>Your walkthrough will appear here.</small></div>
         </div>
       </div>
     </section>
 
-    <section class="section how-section" id="how-it-works">
+    <section class="section how-section view-panel" id="how-it-works" data-view="how-it-works">
       <div class="container">
         <div class="section-heading reveal">
           <p class="eyebrow">How it works</p>
@@ -111,7 +111,7 @@
       </div>
     </section>
 
-    <section class="section compare-section" id="compare">
+    <section class="section compare-section view-panel" id="compare" data-view="compare">
       <div class="container compare-layout">
         <div class="compare-copy reveal">
           <p class="eyebrow">A clearer shortlist</p>
@@ -138,7 +138,7 @@
       </div>
     </section>
 
-    <section class="section trust-section" id="privacy">
+    <section class="section trust-section view-panel" id="privacy" data-view="privacy">
       <div class="container">
         <div class="section-heading reveal"><p class="eyebrow">Built with restraint</p><h2>Useful by design. Respectful by default.</h2></div>
         <div class="trust-grid">
