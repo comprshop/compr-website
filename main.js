@@ -1,7 +1,7 @@
 /* Replace these three placeholders before publishing the website. */
 const COMPR_LINKS = {
-  chrome: "", // Example: https://chromewebstore.google.com/detail/your-extension-id
-  edge: "", // Example: https://microsoftedge.microsoft.com/addons/detail/your-extension-id
+  chrome: "https://chromewebstore.google.com/detail/compr/opgdgckljdepjokbbdgahhbocdlkggkj",
+  edge: "https://microsoftedge.microsoft.com/addons/detail/hiioneifjfpbgbnmmhjbhcnbbkpddnle",
   contact: "" // Example: mailto:hello@example.com
 };
 
