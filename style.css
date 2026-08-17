@@ -109,6 +109,18 @@ h1 em { color: var(--accent); font-style: normal; }
 .proof-grid strong { font-size: .86rem; }
 .proof-grid span { color: var(--muted); font-size: .64rem; }
 
+.demo-section { background: var(--ink); color: #fff; }
+.demo-layout { display: grid; gap: 2.5rem; align-items: center; }
+.demo-section .eyebrow { color: #aaa2ff; }
+.demo-section .section-heading { margin-bottom: 0; }
+.demo-section .section-heading h2 { margin: 0; font-size: clamp(2.3rem,7vw,4.6rem); line-height: 1; letter-spacing: -.055em; }
+.demo-section .section-heading > p:last-of-type { color: #bbbcc6; }
+.demo-points { display: grid; gap: .65rem; margin: 1.5rem 0 0; padding: 0; color: #dedee5; font-size: .9rem; list-style: none; }
+.demo-points li::before { margin-right: .55rem; color: #aaa2ff; content: "✓"; font-weight: 900; }
+.demo-video-card { margin: 0; overflow: hidden; border: 1px solid #383b48; border-radius: var(--radius); background: #20232e; box-shadow: 0 28px 70px rgba(0,0,0,.28); }
+.demo-video-card video { width: 100%; aspect-ratio: 16 / 9; background: #0b0c10; object-fit: cover; }
+.demo-video-card figcaption { padding: .8rem 1rem; color: #aeb0bb; font-size: .72rem; }
+
 .section-heading { max-width: 680px; margin-bottom: 2.4rem; }
 .section-heading h2, .compare-copy h2, .download-card h2 { margin: 0; font-size: clamp(2.2rem, 8vw, 4.5rem); line-height: 1; letter-spacing: -.055em; }
 .section-heading > p:last-child { color: var(--muted); font-size: 1.05rem; }
@@ -268,6 +280,7 @@ h1 em { color: var(--accent); font-style: normal; }
   .footer-grid nav { grid-template-columns: repeat(2,auto); gap: .75rem 2.5rem; }
   .legal-content { padding: 3.5rem; }
   .faq-layout { grid-template-columns: .72fr 1.28fr; }
+  .demo-layout { grid-template-columns: .72fr 1.28fr; }
 }
 
 @media (min-width: 1024px) {
