@@ -15,8 +15,8 @@
   <meta name="twitter:title" content="COMPR — Compare before you buy">
   <meta name="twitter:description" content="A free, privacy-friendly browser extension for smarter product comparisons.">
   <link rel="icon" href="compr-logo.png" type="image/png">
-  <link rel="stylesheet" href="style.css?v=20260817-1">
-  <script src="main.js?v=20260817-1" defer></script>
+  <link rel="stylesheet" href="style.css?v=20260819-1">
+  <script src="main.js?v=20260819-1" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -34,6 +34,7 @@
         <a href="#privacy">Privacy</a>
         <a href="#faq">FAQ</a>
       </nav>
+      <label class="language-switcher"><span class="sr-only">Language</span><select data-language-select aria-label="Language"><option value="en">EN</option><option value="nl">NL</option><option value="de">DE</option><option value="fr">FR</option></select></label>
       <a class="button button-small store-link" data-store="chrome" href="https://chromewebstore.google.com/detail/compr/opgdgckljdepjokbbdgahhbocdlkggkj" target="_blank" rel="noopener noreferrer">Add to Chrome — Free</a>
     </div>
   </header>
@@ -84,7 +85,10 @@
         <figure class="demo-video-card reveal">
           <video controls playsinline preload="metadata" poster="compr-demo-poster-v3.jpg" aria-label="Demonstration of saving and comparing products with COMPR">
             <source src="compr-demo-v3.mp4" type="video/mp4">
-            <track kind="captions" src="compr-demo-en-v3.vtt" srclang="en" label="English" default>
+            <track kind="captions" src="compr-demo-en-v3.vtt" srclang="en" label="English">
+            <track kind="captions" src="compr-demo-nl-v3.vtt" srclang="nl" label="Nederlands">
+            <track kind="captions" src="compr-demo-de-v3.vtt" srclang="de" label="Deutsch">
+            <track kind="captions" src="compr-demo-fr-v3.vtt" srclang="fr" label="Français">
             Your browser does not support HTML video.
           </video>
           <figcaption>Example product pages are shown for demonstration only. The displayed retailers are not affiliated with COMPR.</figcaption>
