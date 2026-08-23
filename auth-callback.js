@@ -10,12 +10,16 @@
     refresh_token: params.get("refresh_token"),
     expires_at: Math.floor(Date.now() / 1000) + (Number.isFinite(expiresIn) ? expiresIn : 3600)
   };
-  if (params.get("error") || !session.access_token || !session.refresh_token) {
-    status.textContent = "De loginlink is ongeldig of verlopen. Vraag vanuit COMPR een nieuwe link aan.";
-    return;
-  }
   if (!globalThis.chrome?.runtime?.sendMessage) {
     status.textContent = "COMPR kon niet worden bereikt. Controleer of de extensie is geïnstalleerd en actief.";
+    return;
+  }
+  if (params.get("error") || !session.access_token || !session.refresh_token) {
+    chrome.runtime.sendMessage(COMPR_EXTENSION_ID, { type: "COMPR_AUTH_PING" }, response => {
+      status.textContent = !chrome.runtime.lastError && response?.ok
+        ? "COMPR is bereikbaar. Vraag vanuit de extensie een nieuwe loginlink aan."
+        : "COMPR kon niet worden bereikt. Controleer of de extensie is geïnstalleerd en actief.";
+    });
     return;
   }
   chrome.runtime.sendMessage(COMPR_EXTENSION_ID, { type: "COMPR_AUTH_SESSION", session }, response => {
