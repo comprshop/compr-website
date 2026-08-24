@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>COMPR · Abonnement verwerken</title>
+  <style>
+    :root{font-family:Inter,system-ui,sans-serif;color:#171725;background:#f4f4f8}
+    body{min-height:100vh;margin:0;display:grid;place-items:center;padding:24px;box-sizing:border-box}
+    main{width:min(620px,100%);padding:42px;border:1px solid #d9dae3;border-radius:28px;background:#fff;box-shadow:0 24px 70px #20203414}
+    h1{margin:0 0 20px;font-size:42px;letter-spacing:-1.5px}h2{font-size:24px;margin:0 0 12px}
+    p{font-size:18px;line-height:1.55;color:#5d6070;margin:0 0 14px}.cancelled{display:none}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>COMPR</h1>
+    <section id="success">
+      <h2>Je betaling wordt gecontroleerd</h2>
+      <p>Open COMPR opnieuw. Je abonnement verschijnt zodra Stripe de betaling veilig heeft bevestigd.</p>
+      <p>Deze pagina activeert zelf geen abonnement.</p>
+    </section>
+    <section id="cancelled" class="cancelled">
+      <h2>Checkout geannuleerd</h2>
+      <p>Er is niets gewijzigd aan je COMPR-abonnement.</p>
+    </section>
+  </main>
+  <script>
+    if (new URLSearchParams(location.search).get("billing") === "cancelled") {
+      document.getElementById("success").hidden = true;
+      document.getElementById("cancelled").style.display = "block";
+    }
+  </script>
+</body>
+</html>
