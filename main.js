@@ -2,6 +2,13 @@ const COMPR_LINKS={chrome:"https://chromewebstore.google.com/detail/compr/opgdgc
 document.querySelectorAll(".store-link[data-store]").forEach(link=>{link.href=COMPR_LINKS[link.dataset.store];link.target="_blank";link.rel="noopener noreferrer"});
 document.querySelectorAll("[data-year]").forEach(node=>node.textContent=new Date().getFullYear());
 
+const COMPR_BETA={supabaseUrl:"https://taosgvfdnblnopaywimf.supabase.co",anonKey:"sb_publishable_cZtYQI3ApFTw8kU2a2AoBQ_nGdlSw1W",callbackUrl:"https://comprshop.github.io/compr-website/auth-callback.html"};
+const betaForm=document.getElementById("betaAccessForm"),betaStatus=document.getElementById("betaAccessStatus");
+document.querySelectorAll("[data-beta-plan]").forEach(link=>link.addEventListener("click",()=>{const input=document.querySelector(`input[name="plan"][value="${link.dataset.betaPlan}"]`);if(input)input.checked=true;}));
+const requestedPlan=new URLSearchParams(location.search).get("plan");
+if(["pro","ultimate"].includes(requestedPlan)){const input=document.querySelector(`input[name="plan"][value="${requestedPlan}"]`);if(input)input.checked=true;}
+if(betaForm)betaForm.addEventListener("submit",async event=>{event.preventDefault();const button=betaForm.querySelector("button"),email=betaForm.email.value.trim(),plan=new FormData(betaForm).get("plan");button.disabled=true;betaStatus.textContent="Registering your interest…";try{const response=await fetch(`${COMPR_BETA.supabaseUrl}/auth/v1/otp`,{method:"POST",headers:{apikey:COMPR_BETA.anonKey,"Content-Type":"application/json"},body:JSON.stringify({email,create_user:true,email_redirect_to:COMPR_BETA.callbackUrl,data:{beta_interest:true,beta_plan:plan,beta_source:"website"}})});if(!response.ok)throw new Error("signup_failed");betaForm.reset();betaStatus.textContent="Check your email to confirm your free beta account. No payment has been created.";}catch{betaStatus.textContent="We couldn't register you just now. Please try again later.";}finally{button.disabled=false;}});
+
 document.querySelectorAll(".faq-list button").forEach(button=>button.addEventListener("click",()=>{const article=button.closest("article"),answer=article.querySelector(".faq-answer"),open=button.getAttribute("aria-expanded")==="true";button.setAttribute("aria-expanded",String(!open));answer.hidden=open}));
 
 const observer="IntersectionObserver" in window?new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("is-visible");observer.unobserve(entry.target)}}),{threshold:.12}):null;
