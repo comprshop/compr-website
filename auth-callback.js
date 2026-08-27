@@ -1,6 +1,6 @@
-(() => {
+(async () => {
   "use strict";
-  const COMPR_EXTENSION_ID = "fpikkglicmmlhkcmnobecnkpomfnnclh";
+  const COMPR_EXTENSION_ID = "opgdgckljdepjokbbdgahhbocdlkggkj";
   const status = document.getElementById("status");
   const continueLink = document.getElementById("continue");
   const params = new URLSearchParams(location.hash.slice(1));
@@ -18,5 +18,26 @@
   }
   continueLink.href = `chrome-extension://${COMPR_EXTENSION_ID}/auth-receiver.html${originalHash}`;
   continueLink.hidden = false;
+  try {
+    const saved = JSON.parse(localStorage.getItem("compr-founding-interest") || "null");
+    if (saved && ["pro", "ultimate"].includes(saved.plan)) {
+      const response = await fetch("https://taosgvfdnblnopaywimf.supabase.co/rest/v1/rpc/compr_register_founding_interest", {
+        method: "POST",
+        headers: {
+          apikey: "sb_publishable_cZtYQI3ApFTw8kU2a2AoBQ_nGdlSw1W",
+          Authorization: `Bearer ${session.access_token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ p_plan: saved.plan, p_source: saved.source || "website" })
+      });
+      if (!response.ok) throw new Error("interest_registration_failed");
+      localStorage.removeItem("compr-founding-interest");
+      status.textContent = "Je e-mailadres en Founding Access-interesse zijn bevestigd. Rond de login af in COMPR.";
+      return;
+    }
+  } catch {
+    status.textContent = "Je e-mailadres is bevestigd. Je Founding Access-interesse kon nog niet worden opgeslagen; probeer het formulier later opnieuw.";
+    return;
+  }
   status.textContent = "Je e-mailadres is bevestigd. Rond de login af in COMPR.";
 })();
