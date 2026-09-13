@@ -1,24 +1,19 @@
 # COMPR website
 
-Static landing page for COMPR. This folder is the flattened GitHub upload copy; the structured source remains in `website`.
+`website-live/` is the canonical COMPR marketing website. Older website folders are snapshots and must not receive launch changes.
 
 ## Before publishing
 
-1. Replace the `chrome`, `edge` and `contact` placeholders at the top of `main.js`.
-2. Add a real demonstration video and update the placeholder in `index.html`.
-3. Add real COMPR screenshots and replace the illustrative `.comparison-demo` block when available.
-4. After the final GitHub Pages URL is known, use an absolute URL for `og:image` in `index.html` for the most reliable social previews.
+1. Confirm the legal/operator details listed in `PAID_LAUNCH_DECISIONS.md` before paid launch.
+2. Obtain human/legal approval for Privacy and Terms.
+3. Verify the Chrome Web Store listing immediately before publication.
+4. Follow `HOSTNL_DEPLOYMENT_RUNBOOK.md` and its exact inventory for a separately approved upload.
+5. Update the Supabase callback allowlist only in a separate approved production package after the domain is live.
 
 ## Local preview
 
-Opening `index.html` directly works. For a local web server, run this command from the repository root when Python is installed:
-
 ```powershell
-python -m http.server 8000 --directory website
+python -m http.server 8000
 ```
 
-Then visit `http://localhost:8000`.
-
-## GitHub Pages
-
-The workflow at `../.github/workflows/pages.yml` publishes only this `website` directory. In the GitHub repository settings, choose **GitHub Actions** as the Pages source. The workflow currently expects the default branch to be named `main`; change it if the repository uses another branch.
+Run that command inside `website-live/`, then open `http://localhost:8000`. Do not publish until the deployment and legal checks are complete.

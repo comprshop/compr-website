@@ -1,0 +1,9 @@
+website-preview/
+beta-media/
+build/
+dist/
+getcompr-public-html-candidate*/
+*checkpoint*/
+*.log
+*.tmp
+*.bak
