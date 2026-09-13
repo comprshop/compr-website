@@ -1,4 +1,4 @@
-const COMPR_LINKS={chrome:"https://chromewebstore.google.com/detail/compr/opgdgckljdepjokbbdgahhbocdlkggkj",edge:"https://microsoftedge.microsoft.com/addons/detail/hiioneifjfpbgbnmmhjbhcnbbkpddnle"};
+const COMPR_LINKS={chrome:"https://chromewebstore.google.com/detail/compr/fpikkglicmmlhkcmnobecnkpomfnnclh",edge:"https://microsoftedge.microsoft.com/addons/detail/hiioneifjfpbgbnmmhjbhcnbbkpddnle"};
 document.querySelectorAll(".store-link[data-store]").forEach(link=>{link.href=COMPR_LINKS[link.dataset.store];link.target="_blank";link.rel="noopener noreferrer"});
 document.querySelectorAll("[data-year]").forEach(node=>node.textContent=new Date().getFullYear());
 
